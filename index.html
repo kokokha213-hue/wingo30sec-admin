@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WINGO 30 SEC HACK — Admin Dashboard</title>
+    <title>WINGO 30 SEC DEMO — Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -227,8 +227,8 @@
 
         .expiry-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
             margin-bottom: 16px;
         }
 
@@ -236,7 +236,7 @@
             background: rgba(15, 23, 42, 0.8);
             border: 1.5px solid var(--glass-border);
             border-radius: 12px;
-            padding: 14px;
+            padding: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -257,62 +257,47 @@
         .expiry-option.selected::after {
             content: '✓';
             position: absolute;
-            top: 8px; right: 10px;
+            top: 6px; right: 8px;
             color: var(--neon-cyan);
             font-weight: 800;
-            font-size: 0.9rem;
-        }
-
-        .expiry-icon {
-            font-size: 1.8rem;
-            margin-bottom: 6px;
-        }
-
-        .expiry-title {
             font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-primary);
         }
 
-        .expiry-desc {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
+        .expiry-icon { font-size: 1.5rem; margin-bottom: 4px; }
+        .expiry-title { font-size: 0.75rem; font-weight: 700; color: var(--text-primary); }
+        .expiry-desc { font-size: 0.6rem; color: var(--text-muted); margin-top: 2px; }
 
         .custom-expiry {
             display: flex;
             gap: 10px;
             align-items: center;
             flex-wrap: wrap;
+            margin-bottom: 16px;
         }
 
         .custom-expiry input {
-            width: 80px;
+            width: 70px;
             text-align: center;
+            padding: 10px;
         }
 
         .custom-expiry select {
-            padding: 12px 16px;
+            padding: 10px 14px;
             background: rgba(15, 23, 42, 0.8);
             border: 1.5px solid var(--glass-border);
             border-radius: 12px;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: 'Inter', sans-serif;
             outline: none;
             cursor: pointer;
         }
 
-        .custom-expiry select:focus {
-            border-color: var(--neon-cyan);
-        }
-
         .btn {
-            padding: 14px 24px;
+            padding: 12px 20px;
             border: none;
             border-radius: 12px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -353,32 +338,41 @@
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: var(--success);
-            padding: 10px 18px;
+            padding: 10px 16px;
             border-radius: 10px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
         }
 
         .btn-disable {
             background: rgba(245, 158, 11, 0.15);
             border: 1px solid rgba(245, 158, 11, 0.3);
             color: var(--warning);
-            padding: 10px 18px;
+            padding: 10px 16px;
             border-radius: 10px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
         }
 
         .btn-expire {
             background: rgba(239, 68, 68, 0.15);
             border: 1px solid rgba(239, 68, 68, 0.3);
             color: var(--error);
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .btn-expire:hover {
-            background: rgba(239, 68, 68, 0.25);
+            background: rgba(239, 68, 68, 0.3);
             box-shadow: 0 0 15px var(--error-glow);
+        }
+
+        .btn-expire-small {
+            padding: 6px 10px;
+            font-size: 0.65rem;
+            border-radius: 6px;
         }
 
         .btn-group {
@@ -430,12 +424,122 @@
             margin-top: 8px;
         }
 
+        /* Key List Styles */
+        .key-list-container {
+            max-height: 500px;
+            overflow-y: auto;
+            border-radius: 12px;
+        }
+
+        .key-list-item {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .key-list-item:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.08);
+        }
+
+        .key-list-item.current-key {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .key-list-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .key-list-key {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            word-break: break-all;
+            margin-bottom: 4px;
+        }
+
+        .key-list-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .key-list-badge {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .key-list-badge.active {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .key-list-badge.expired {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--error);
+        }
+
+        .key-list-badge.current {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--neon-cyan);
+        }
+
+        .key-list-expiry {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .key-list-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .key-list-time {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .no-keys {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--glass-border);
+            margin: 24px 0;
+        }
+
         @media (max-width: 600px) {
             .card { padding: 20px 16px; }
             .input-group { flex-direction: column; }
             .btn { width: 100%; }
             .key-row { flex-direction: column; text-align: center; }
-            .expiry-grid { grid-template-columns: repeat(2, 1fr); }
+            .expiry-grid { grid-template-columns: repeat(3, 1fr); }
+            .key-list-item { flex-direction: column; text-align: center; }
+            .key-list-actions { justify-content: center; }
         }
     </style>
 </head>
@@ -456,11 +560,11 @@
                 <i class="fa-solid fa-key"></i> ACCESS KEY MANAGEMENT
             </div>
 
-            <!-- Current Key Info -->
+            <!-- Current Active Key -->
             <div class="key-display">
                 <div class="key-row">
                     <div>
-                        <div class="key-label">Current Access Key</div>
+                        <div class="key-label">🔑 Current Active Key</div>
                         <div class="key-value" id="currentKeyDisplay">Loading...</div>
                     </div>
                     <div>
@@ -484,15 +588,15 @@
                 </div>
             </div>
 
-            <!-- Change Key -->
+            <!-- Generate & Change Key -->
             <div class="card-header" style="font-size: 0.95rem;">
-                <i class="fa-solid fa-pen-to-square"></i> CHANGE ACCESS KEY
+                <i class="fa-solid fa-pen-to-square"></i> GENERATE / CHANGE ACCESS KEY
             </div>
 
             <div class="input-group">
-                <input type="text" class="input-field" id="newAccessKey" placeholder="Enter new access key" maxlength="50">
+                <input type="text" class="input-field" id="newAccessKey" placeholder="Enter or generate new key" maxlength="50">
                 <button class="btn btn-generate" id="generateKeyBtn">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> GENERATE
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> GENERATE NEW KEY
                 </button>
             </div>
 
@@ -504,57 +608,49 @@
             <div class="expiry-grid">
                 <div class="expiry-option" data-expiry="5m">
                     <div class="expiry-icon">⏱️</div>
-                    <div class="expiry-title">5 Minutes</div>
-                    <div class="expiry-desc">Quick demo</div>
+                    <div class="expiry-title">5 Min</div>
                 </div>
                 <div class="expiry-option" data-expiry="30m">
                     <div class="expiry-icon">🕐</div>
-                    <div class="expiry-title">30 Minutes</div>
-                    <div class="expiry-desc">Short access</div>
+                    <div class="expiry-title">30 Min</div>
                 </div>
                 <div class="expiry-option" data-expiry="1h">
                     <div class="expiry-icon">🕑</div>
                     <div class="expiry-title">1 Hour</div>
-                    <div class="expiry-desc">Standard access</div>
                 </div>
                 <div class="expiry-option" data-expiry="6h">
                     <div class="expiry-icon">🕕</div>
                     <div class="expiry-title">6 Hours</div>
-                    <div class="expiry-desc">Extended access</div>
                 </div>
                 <div class="expiry-option" data-expiry="24h">
                     <div class="expiry-icon">📅</div>
                     <div class="expiry-title">24 Hours</div>
-                    <div class="expiry-desc">Full day access</div>
                 </div>
                 <div class="expiry-option" data-expiry="7d">
                     <div class="expiry-icon">📆</div>
                     <div class="expiry-title">7 Days</div>
-                    <div class="expiry-desc">Weekly access</div>
                 </div>
                 <div class="expiry-option" data-expiry="30d">
                     <div class="expiry-icon">🗓️</div>
                     <div class="expiry-title">30 Days</div>
-                    <div class="expiry-desc">Monthly access</div>
                 </div>
                 <div class="expiry-option selected" data-expiry="never">
                     <div class="expiry-icon">♾️</div>
                     <div class="expiry-title">No Expiry</div>
-                    <div class="expiry-desc">Permanent key</div>
                 </div>
             </div>
 
             <!-- Custom Expiry -->
-            <div class="custom-expiry" style="margin-bottom:12px;">
-                <span style="font-size:0.8rem;color:var(--text-secondary);">Custom:</span>
-                <input type="number" class="input-field" id="customExpiryValue" placeholder="Value" min="1" style="width:80px;padding:10px;">
+            <div class="custom-expiry">
+                <span style="font-size:0.78rem;color:var(--text-secondary);">Custom:</span>
+                <input type="number" class="input-field" id="customExpiryValue" placeholder="Value" min="1" style="width:70px;padding:10px;">
                 <select id="customExpiryUnit">
                     <option value="minutes">Minutes</option>
                     <option value="hours">Hours</option>
                     <option value="days">Days</option>
                 </select>
-                <button class="btn btn-generate" id="applyCustomExpiry" style="padding:10px 16px;font-size:0.75rem;">
-                    SET
+                <button class="btn btn-generate" id="applyCustomExpiry" style="padding:10px 16px;font-size:0.72rem;">
+                    SET CUSTOM
                 </button>
             </div>
 
@@ -572,10 +668,32 @@
             </div>
 
             <button class="btn btn-primary" id="saveChangesBtn">
-                <i class="fa-solid fa-floppy-disk"></i> SAVE CHANGES
+                <i class="fa-solid fa-floppy-disk"></i> SAVE & ACTIVATE KEY
             </button>
 
             <div class="message" id="message"></div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- KEY LIST SECTION - ALL GENERATED KEYS -->
+        <!-- ============================================ -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-list-ul"></i> ALL ACCESS KEYS
+                <span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;">
+                    Click EXPIRY to expire any key instantly
+                </span>
+            </div>
+
+            <div class="key-list-container" id="keyListContainer">
+                <div class="no-keys">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Loading keys...
+                </div>
+            </div>
+
+            <button class="btn btn-generate" id="refreshKeyList" style="margin-top:12px;width:100%;">
+                <i class="fa-solid fa-rotate"></i> REFRESH KEY LIST
+            </button>
         </div>
     </div>
 
@@ -599,6 +717,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const accessControlRef = db.collection('settings').doc('accessControl');
+        const keyHistoryRef = db.collection('settings').doc('keyHistory');
 
         console.log('✅ Firebase Connected');
 
@@ -621,11 +740,14 @@
         const customExpiryValue = document.getElementById('customExpiryValue');
         const customExpiryUnit = document.getElementById('customExpiryUnit');
         const applyCustomExpiry = document.getElementById('applyCustomExpiry');
+        const keyListContainer = document.getElementById('keyListContainer');
+        const refreshKeyList = document.getElementById('refreshKeyList');
 
         let currentKeyData = null;
-        let selectedExpiry = 'never'; // default
+        let selectedExpiry = 'never';
         let pendingChanges = {};
         let countdownInterval = null;
+        let allKeys = [];
 
         // ============================================
         // SHOW MESSAGE
@@ -637,11 +759,10 @@
         }
 
         // ============================================
-        // PARSE EXPIRY TO MILLISECONDS
+        // PARSE EXPIRY
         // ============================================
         function parseExpiry(expiryStr) {
             if (!expiryStr || expiryStr === 'never') return null;
-            
             const match = expiryStr.match(/^(\d+)(m|h|d)$/);
             if (match) {
                 const value = parseInt(match[1]);
@@ -659,29 +780,28 @@
             if (!match) return expiryStr;
             const v = match[1];
             const u = match[2];
-            if (u === 'm') return `${v} Minute${v>1?'s':''}`;
+            if (u === 'm') return `${v} Min`;
             if (u === 'h') return `${v} Hour${v>1?'s':''}`;
             if (u === 'd') return `${v} Day${v>1?'s':''}`;
             return expiryStr;
         }
 
         // ============================================
-        // CHECK IF KEY IS EXPIRED
+        // KEY EXPIRY CHECK
         // ============================================
-        function isKeyExpired(data) {
-            if (!data.expiresAt) return false;
+        function isKeyExpired(expiresAt) {
+            if (!expiresAt) return false;
             const now = new Date();
-            const expiresAt = data.expiresAt.toDate ? data.expiresAt.toDate() : new Date(data.expiresAt);
-            return now >= expiresAt;
+            const exp = expiresAt.toDate ? expiresAt.toDate() : new Date(expiresAt);
+            return now >= exp;
         }
 
-        function getTimeRemaining(data) {
-            if (!data.expiresAt) return null;
+        function getTimeRemaining(expiresAt) {
+            if (!expiresAt) return null;
             const now = new Date();
-            const expiresAt = data.expiresAt.toDate ? data.expiresAt.toDate() : new Date(data.expiresAt);
-            const diff = expiresAt - now;
-            if (diff <= 0) return null;
-            return diff;
+            const exp = expiresAt.toDate ? expiresAt.toDate() : new Date(expiresAt);
+            const diff = exp - now;
+            return diff > 0 ? diff : null;
         }
 
         function formatTimeRemaining(ms) {
@@ -690,34 +810,30 @@
             const hours = Math.floor((ms % (24*60*60*1000)) / (60*60*1000));
             const minutes = Math.floor((ms % (60*60*1000)) / (60*1000));
             const seconds = Math.floor((ms % (60*1000)) / 1000);
-            
             if (days > 0) return `${days}d ${hours}h ${minutes}m`;
             if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
             return `${minutes}m ${seconds}s`;
         }
 
         // ============================================
-        // UPDATE UI
+        // UPDATE DASHBOARD UI
         // ============================================
         function updateDashboardUI(data) {
             currentKeyDisplay.textContent = data.accessKey || 'NOT SET';
-            
-            // Check expiry
-            const expired = isKeyExpired(data);
+            const expired = isKeyExpired(data.expiresAt);
             
             if (data.enabled === false) {
                 keyStatusBadge.textContent = 'DISABLED';
                 keyStatusBadge.className = 'status-badge disabled';
-                updateExpiryUI(data);
             } else if (expired) {
                 keyStatusBadge.textContent = 'EXPIRED';
                 keyStatusBadge.className = 'status-badge expired';
-                updateExpiryUI(data);
             } else {
                 keyStatusBadge.textContent = 'ACTIVE';
                 keyStatusBadge.className = 'status-badge active';
-                updateExpiryUI(data);
             }
+
+            updateExpiryUI(data);
         }
 
         function updateExpiryUI(data) {
@@ -729,8 +845,8 @@
                     hour: '2-digit', minute: '2-digit', second: '2-digit'
                 });
 
-                const remaining = getTimeRemaining(data);
-                const expired = isKeyExpired(data);
+                const remaining = getTimeRemaining(data.expiresAt);
+                const expired = isKeyExpired(data.expiresAt);
 
                 if (expired) {
                     expiryInfo.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> <span class="expired-text">KEY EXPIRED</span>';
@@ -739,19 +855,11 @@
                     countdownTimer.textContent = '⛔ EXPIRED';
                     countdownTimer.style.color = '#ef4444';
                 } else if (remaining) {
-                    const remainingStr = formatTimeRemaining(remaining);
-                    expiryInfo.innerHTML = '<i class="fa-solid fa-hourglass-half"></i> Expires in: ' + remainingStr;
-                    
-                    if (remaining < 5 * 60 * 1000) {
-                        expiryInfo.className = 'expiry-info expiring-soon';
-                    } else {
-                        expiryInfo.className = 'expiry-info';
-                    }
-                    
+                    expiryInfo.innerHTML = '<i class="fa-solid fa-hourglass-half"></i> Expires in: ' + formatTimeRemaining(remaining);
+                    expiryInfo.className = remaining < 5*60*1000 ? 'expiry-info expiring-soon' : 'expiry-info';
                     countdownTimer.style.display = 'block';
-                    countdownTimer.textContent = '⏳ ' + remainingStr;
+                    countdownTimer.textContent = '⏳ ' + formatTimeRemaining(remaining);
                     countdownTimer.style.color = remaining < 5*60*1000 ? '#f59e0b' : '#38bdf8';
-                    
                     startCountdown(data);
                 }
             } else {
@@ -766,14 +874,13 @@
         function startCountdown(data) {
             stopCountdown();
             countdownInterval = setInterval(() => {
-                const remaining = getTimeRemaining(data);
-                if (remaining === null || remaining <= 0) {
+                if (!data.expiresAt) return;
+                const remaining = getTimeRemaining(data.expiresAt);
+                if (!remaining || remaining <= 0) {
                     countdownTimer.textContent = '⛔ EXPIRED';
                     countdownTimer.style.color = '#ef4444';
                     keyStatusBadge.textContent = 'EXPIRED';
                     keyStatusBadge.className = 'status-badge expired';
-                    expiryInfo.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> <span class="expired-text">KEY EXPIRED</span>';
-                    expiryInfo.className = 'expiry-info expired-text';
                     stopCountdown();
                 } else {
                     countdownTimer.textContent = '⏳ ' + formatTimeRemaining(remaining);
@@ -782,14 +889,11 @@
         }
 
         function stopCountdown() {
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-                countdownInterval = null;
-            }
+            if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
         }
 
         // ============================================
-        // LOAD DATA
+        // LOAD CURRENT KEY DATA
         // ============================================
         async function loadData() {
             try {
@@ -797,18 +901,11 @@
                 if (doc.exists) {
                     currentKeyData = doc.data();
                     updateDashboardUI(currentKeyData);
-                    
-                    // Reset selected expiry based on stored data
-                    if (currentKeyData.expiryDuration) {
-                        selectedExpiry = currentKeyData.expiryDuration;
-                    }
                 } else {
                     currentKeyDisplay.textContent = 'NOT CONFIGURED';
-                    showMessage('Create settings/accessControl in Firestore first!', 'error');
                 }
             } catch (error) {
                 console.error('Load error:', error);
-                showMessage('Error loading: ' + error.message, 'error');
             }
         }
 
@@ -817,18 +914,18 @@
             if (doc.exists) {
                 currentKeyData = doc.data();
                 updateDashboardUI(currentKeyData);
+                loadAllKeys(); // Refresh key list
             }
         });
 
         // ============================================
-        // EXPIRY OPTIONS CLICK
+        // EXPIRY OPTIONS
         // ============================================
         document.querySelectorAll('.expiry-option').forEach(option => {
             option.addEventListener('click', function() {
                 document.querySelectorAll('.expiry-option').forEach(o => o.classList.remove('selected'));
                 this.classList.add('selected');
                 selectedExpiry = this.getAttribute('data-expiry');
-                
                 if (selectedExpiry === 'never') {
                     showMessage('Key will NOT expire (permanent)', 'info');
                 } else {
@@ -837,26 +934,16 @@
             });
         });
 
-        // Custom expiry
         applyCustomExpiry.addEventListener('click', () => {
             const value = parseInt(customExpiryValue.value);
             const unit = customExpiryUnit.value;
-            
-            if (!value || value < 1) {
-                showMessage('Please enter a valid number', 'error');
-                return;
-            }
-
+            if (!value || value < 1) { showMessage('Enter valid number', 'error'); return; }
             let unitCode = 'm';
             if (unit === 'hours') unitCode = 'h';
             else if (unit === 'days') unitCode = 'd';
-            else unitCode = 'm';
-
             selectedExpiry = value + unitCode;
-            
             document.querySelectorAll('.expiry-option').forEach(o => o.classList.remove('selected'));
-            
-            showMessage(`Custom expiry set: ${formatExpiryText(selectedExpiry)}`, 'info');
+            showMessage(`Custom expiry: ${formatExpiryText(selectedExpiry)}`, 'info');
         });
 
         // ============================================
@@ -870,14 +957,11 @@
             }
             newAccessKey.value = key;
             pendingChanges.accessKey = key;
-            showMessage('New key generated! Set expiry and save.', 'info');
+            showMessage('✅ New key generated! Select expiry & save.', 'success');
         });
 
-        // Track input
         newAccessKey.addEventListener('input', () => {
-            if (newAccessKey.value.trim()) {
-                pendingChanges.accessKey = newAccessKey.value.trim();
-            }
+            if (newAccessKey.value.trim()) pendingChanges.accessKey = newAccessKey.value.trim();
         });
 
         // ============================================
@@ -886,39 +970,31 @@
         enableKeyBtn.addEventListener('click', () => {
             pendingChanges.enabled = true;
             pendingChanges.expiresAt = null;
-            pendingChanges.expiryDuration = null;
             selectedExpiry = 'never';
             document.querySelectorAll('.expiry-option').forEach(o => o.classList.remove('selected'));
-            const neverOption = document.querySelector('[data-expiry="never"]');
-            if (neverOption) neverOption.classList.add('selected');
-            
+            const neverOpt = document.querySelector('[data-expiry="never"]');
+            if (neverOpt) neverOpt.classList.add('selected');
             keyStatusBadge.textContent = 'ACTIVE';
             keyStatusBadge.className = 'status-badge active';
-            showMessage('Key will be ENABLED with NO EXPIRY after saving.', 'info');
+            showMessage('Key will be ENABLED with NO EXPIRY.', 'info');
         });
 
         disableKeyBtn.addEventListener('click', () => {
             pendingChanges.enabled = false;
             keyStatusBadge.textContent = 'DISABLED';
             keyStatusBadge.className = 'status-badge disabled';
-            showMessage('Key will be DISABLED after saving.', 'info');
+            showMessage('Key will be DISABLED.', 'info');
         });
 
         expireNowBtn.addEventListener('click', async () => {
-            const confirmExpire = confirm('⚠️ Are you sure? This will IMMEDIATELY expire the current key. All users will be locked out.');
-            if (!confirmExpire) return;
-
+            if (!confirm('⚠️ Expire current key IMMEDIATELY? All users will be locked out.')) return;
             try {
-                const now = new Date();
-                // Set expiry to 1 second ago (instantly expired)
-                const expiredTime = new Date(now.getTime() - 1000);
-                
+                const expiredTime = new Date(Date.now() - 1000);
                 await accessControlRef.update({
                     expiresAt: firebase.firestore.Timestamp.fromDate(expiredTime),
                     enabled: true
                 });
-
-                showMessage('✅ Key expired immediately! All users locked out.', 'success');
+                showMessage('✅ Key expired! All users locked out.', 'success');
                 pendingChanges = {};
                 newAccessKey.value = '';
             } catch (error) {
@@ -927,47 +1003,34 @@
         });
 
         // ============================================
-        // SAVE CHANGES
+        // SAVE & ACTIVATE KEY
         // ============================================
         saveChangesBtn.addEventListener('click', async () => {
             const newKey = newAccessKey.value.trim();
             if (newKey) pendingChanges.accessKey = newKey;
-
-            if (!pendingChanges.accessKey && pendingChanges.enabled === undefined && !selectedExpiry) {
-                showMessage('No changes to save. Enter new key or select expiry.', 'info');
+            if (!pendingChanges.accessKey && pendingChanges.enabled === undefined && selectedExpiry === (currentKeyData?.expiryDuration || 'never')) {
+                showMessage('No changes. Enter new key or select expiry.', 'info');
                 return;
             }
 
-            // Confirmation
             let confirmMsg = 'Save changes?';
             if (pendingChanges.accessKey) {
-                confirmMsg = `Change access key to "${pendingChanges.accessKey}"?`;
+                confirmMsg = `Activate new key: "${pendingChanges.accessKey}"?`;
                 if (selectedExpiry && selectedExpiry !== 'never') {
-                    confirmMsg += `\nKey will expire in ${formatExpiryText(selectedExpiry)}.`;
+                    confirmMsg += `\nExpires in: ${formatExpiryText(selectedExpiry)}`;
                 }
             }
-            const confirmed = confirm(confirmMsg);
-            if (!confirmed) return;
+            if (!confirm(confirmMsg)) return;
 
             saveChangesBtn.disabled = true;
             saveChangesBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SAVING...';
 
             try {
-                const updateData = {
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                };
+                const updateData = { updatedAt: firebase.firestore.FieldValue.serverTimestamp() };
+                if (pendingChanges.accessKey) updateData.accessKey = pendingChanges.accessKey;
+                if (pendingChanges.enabled !== undefined) updateData.enabled = pendingChanges.enabled;
 
-                if (pendingChanges.accessKey) {
-                    updateData.accessKey = pendingChanges.accessKey;
-                }
-
-                if (pendingChanges.enabled !== undefined) {
-                    updateData.enabled = pendingChanges.enabled;
-                }
-
-                // Handle expiry
                 if (pendingChanges.enabled === false) {
-                    // If disabling, clear expiry
                     updateData.expiresAt = null;
                     updateData.expiryDuration = null;
                 } else if (selectedExpiry === 'never') {
@@ -976,59 +1039,242 @@
                 } else if (selectedExpiry) {
                     const expiryMs = parseExpiry(selectedExpiry);
                     if (expiryMs) {
-                        const expiresAt = new Date(Date.now() + expiryMs);
-                        updateData.expiresAt = firebase.firestore.Timestamp.fromDate(expiresAt);
+                        updateData.expiresAt = firebase.firestore.Timestamp.fromDate(new Date(Date.now() + expiryMs));
                         updateData.expiryDuration = selectedExpiry;
                         updateData.enabled = true;
                     }
                 }
 
-                // Check if document exists
                 const doc = await accessControlRef.get();
                 if (doc.exists) {
                     await accessControlRef.update(updateData);
                 } else {
-                    // Create if not exists
-                    const createData = {
+                    await accessControlRef.set({
                         accessKey: updateData.accessKey || 'WINGO-DEMO-2024',
                         enabled: updateData.enabled !== undefined ? updateData.enabled : true,
                         updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
                         expiresAt: updateData.expiresAt || null,
                         expiryDuration: updateData.expiryDuration || null
-                    };
-                    await accessControlRef.set(createData);
+                    });
+                }
+
+                // Save to key history
+                if (pendingChanges.accessKey) {
+                    await saveKeyToHistory(pendingChanges.accessKey, updateData.expiresAt, updateData.expiryDuration);
                 }
 
                 pendingChanges = {};
                 newAccessKey.value = '';
-                
-                if (selectedExpiry && selectedExpiry !== 'never') {
-                    showMessage(`✅ Key saved! Will expire in ${formatExpiryText(selectedExpiry)}.`, 'success');
-                } else {
-                    showMessage('✅ Changes saved successfully! Real-time update active.', 'success');
-                }
+                showMessage('✅ Key saved & activated! Real-time update sent.', 'success');
+                loadAllKeys();
 
             } catch (error) {
                 console.error('Save error:', error);
                 showMessage('❌ Error: ' + error.message, 'error');
             } finally {
                 saveChangesBtn.disabled = false;
-                saveChangesBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SAVE CHANGES';
+                saveChangesBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SAVE & ACTIVATE KEY';
             }
         });
 
         // ============================================
+        // KEY HISTORY - SAVE & LOAD
+        // ============================================
+        async function saveKeyToHistory(key, expiresAt, expiryDuration) {
+            try {
+                const doc = await keyHistoryRef.get();
+                let keys = [];
+                if (doc.exists && doc.data().keys) {
+                    keys = doc.data().keys;
+                }
+                
+                // Add new key at beginning
+                keys.unshift({
+                    key: key,
+                    expiresAt: expiresAt || null,
+                    expiryDuration: expiryDuration || null,
+                    createdAt: new Date().toISOString(),
+                    status: 'active'
+                });
+
+                // Keep only last 50 keys
+                if (keys.length > 50) keys = keys.slice(0, 50);
+
+                await keyHistoryRef.set({ keys, updatedAt: new Date().toISOString() }, { merge: true });
+                console.log('✅ Key saved to history');
+            } catch (error) {
+                console.error('History save error:', error);
+            }
+        }
+
+        async function loadAllKeys() {
+            try {
+                const doc = await keyHistoryRef.get();
+                allKeys = [];
+                
+                if (doc.exists && doc.data().keys) {
+                    allKeys = doc.data().keys;
+                }
+
+                // Also include current key if not in history
+                if (currentKeyData && currentKeyData.accessKey) {
+                    const exists = allKeys.find(k => k.key === currentKeyData.accessKey);
+                    if (!exists) {
+                        allKeys.unshift({
+                            key: currentKeyData.accessKey,
+                            expiresAt: currentKeyData.expiresAt || null,
+                            expiryDuration: currentKeyData.expiryDuration || null,
+                            createdAt: currentKeyData.updatedAt || new Date().toISOString(),
+                            status: 'current'
+                        });
+                    }
+                }
+
+                renderKeyList();
+            } catch (error) {
+                console.error('Load keys error:', error);
+                keyListContainer.innerHTML = '<div class="no-keys">❌ Error loading keys</div>';
+            }
+        }
+
+        function renderKeyList() {
+            if (allKeys.length === 0) {
+                keyListContainer.innerHTML = '<div class="no-keys">📭 No keys generated yet. Generate a new key above.</div>';
+                return;
+            }
+
+            const currentActiveKey = currentKeyData?.accessKey;
+
+            let html = '';
+            allKeys.forEach((keyData, index) => {
+                const isCurrentKey = keyData.key === currentActiveKey;
+                const expiresAt = keyData.expiresAt;
+                const expired = expiresAt ? isKeyExpired(expiresAt) : false;
+                const remaining = expiresAt ? getTimeRemaining(expiresAt) : null;
+
+                let statusBadge = '';
+                let statusClass = '';
+                
+                if (isCurrentKey && !expired && currentKeyData?.enabled !== false) {
+                    statusBadge = 'CURRENT';
+                    statusClass = 'current';
+                } else if (expired) {
+                    statusBadge = 'EXPIRED';
+                    statusClass = 'expired';
+                } else {
+                    statusBadge = 'INACTIVE';
+                    statusClass = 'expired';
+                }
+
+                let expiryText = '';
+                if (!expiresAt) {
+                    expiryText = 'No expiry';
+                } else if (expired) {
+                    expiryText = '⛔ Expired';
+                } else if (remaining) {
+                    expiryText = '⏳ ' + formatTimeRemaining(remaining);
+                }
+
+                const createdDate = keyData.createdAt ? new Date(keyData.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '--';
+
+                html += `
+                    <div class="key-list-item ${isCurrentKey ? 'current-key' : ''}">
+                        <div class="key-list-info">
+                            <div class="key-list-key">🔑 ${keyData.key}</div>
+                            <div class="key-list-status">
+                                <span class="key-list-badge ${statusClass}">${statusBadge}</span>
+                                <span class="key-list-expiry">${expiryText}</span>
+                                <span class="key-list-time">Created: ${createdDate}</span>
+                            </div>
+                        </div>
+                        <div class="key-list-actions">
+                            ${!expired ? `
+                                <button class="btn btn-expire btn-expire-small" onclick="expireSpecificKey('${keyData.key.replace(/'/g, "\\'")}')" title="Expire this key now">
+                                    <i class="fa-solid fa-skull"></i> EXPIRE
+                                </button>
+                            ` : `
+                                <span style="font-size:0.65rem;color:var(--error);">EXPIRED</span>
+                            `}
+                            ${!isCurrentKey && !expired ? `
+                                <button class="btn btn-enable" style="padding:6px 10px;font-size:0.65rem;" onclick="activateSpecificKey('${keyData.key.replace(/'/g, "\\'")}')" title="Make this key active">
+                                    <i class="fa-solid fa-check"></i> ACTIVATE
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            keyListContainer.innerHTML = html;
+        }
+
+        // ============================================
+        // GLOBAL FUNCTIONS FOR KEY LIST BUTTONS
+        // ============================================
+        window.expireSpecificKey = async function(key) {
+            if (!confirm(`⚠️ Expire key "${key}" immediately? Users with this key will be locked out.`)) return;
+            try {
+                // If this is the current active key, expire it in accessControl
+                if (currentKeyData && currentKeyData.accessKey === key) {
+                    await accessControlRef.update({
+                        expiresAt: firebase.firestore.Timestamp.fromDate(new Date(Date.now() - 1000))
+                    });
+                }
+                
+                // Update in key history
+                const doc = await keyHistoryRef.get();
+                if (doc.exists && doc.data().keys) {
+                    let keys = doc.data().keys;
+                    keys = keys.map(k => {
+                        if (k.key === key) {
+                            k.expiresAt = new Date(Date.now() - 1000).toISOString();
+                            k.status = 'expired';
+                        }
+                        return k;
+                    });
+                    await keyHistoryRef.set({ keys, updatedAt: new Date().toISOString() }, { merge: true });
+                }
+
+                showMessage(`✅ Key "${key.substring(0,20)}..." expired!`, 'success');
+                loadAllKeys();
+            } catch (error) {
+                showMessage('❌ Error: ' + error.message, 'error');
+            }
+        };
+
+        window.activateSpecificKey = async function(key) {
+            if (!confirm(`Activate key "${key}"? This will replace the current active key.`)) return;
+            try {
+                await accessControlRef.update({
+                    accessKey: key,
+                    enabled: true,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                showMessage(`✅ Key "${key.substring(0,20)}..." activated!`, 'success');
+                newAccessKey.value = key;
+                loadAllKeys();
+            } catch (error) {
+                showMessage('❌ Error: ' + error.message, 'error');
+            }
+        };
+
+        // ============================================
+        // REFRESH KEY LIST
+        // ============================================
+        refreshKeyList.addEventListener('click', loadAllKeys);
+
+        // ============================================
         // INIT
         // ============================================
-        loadData();
+        async function init() {
+            await loadData();
+            await loadAllKeys();
+        }
+
+        init();
+
         console.log('🚀 Admin Dashboard Ready');
-        console.log('📋 Features:');
-        console.log('  ✅ Change Access Key');
-        console.log('  ✅ Set Expiry (5min, 30min, 1hr, 6hr, 24hr, 7d, 30d, Custom)');
-        console.log('  ✅ Enable/Disable Key');
-        console.log('  ✅ Expire Now (Instant)');
-        console.log('  ✅ Real-time countdown timer');
-        console.log('  ✅ Auto-expiry in User Web');
+        console.log('✅ Features: Generate Key | Key List | Expire Button | Activate Button');
     </script>
 </body>
 </html>
