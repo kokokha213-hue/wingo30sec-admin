@@ -717,7 +717,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const accessControlRef = db.collection('settings').doc('accessControl');
-        const keyHistoryRef = db.collection('settings').doc('keyHistory');
+        const keyHistoryRef = db.collection('settings').doc('accesslogs');
 
         console.log('✅ Firebase Connected');
 
@@ -1084,7 +1084,7 @@
             try {
                 const doc = await keyHistoryRef.get();
                 let keys = [];
-                if (doc.exists && doc.data().keys) {
+                if (doc.exists && Array.isArray(doc.data().keys)) {
                     keys = doc.data().keys;
                 }
                 
@@ -1103,7 +1103,8 @@
                 await keyHistoryRef.set({ keys, updatedAt: new Date().toISOString() }, { merge: true });
                 console.log('✅ Key saved to history');
             } catch (error) {
-                console.error('History save error:', error);
+                console.error('Access logs save error:', error);
+                showMessage('⚠️ Key activated, but Access Logs could not be updated: ' + error.message, 'error');
             }
         }
 
@@ -1112,7 +1113,7 @@
                 const doc = await keyHistoryRef.get();
                 allKeys = [];
                 
-                if (doc.exists && doc.data().keys) {
+                if (doc.exists && Array.isArray(doc.data().keys)) {
                     allKeys = doc.data().keys;
                 }
 
@@ -1273,7 +1274,7 @@
 
         init();
 
-        console.log('🚀 Admin Dashboard Ready');
+        console.log('🚀 Admin Dashboard Ready — Access Logs enabled');
         console.log('✅ Features: Generate Key | Key List | Expire Button | Activate Button');
     </script>
 </body>
