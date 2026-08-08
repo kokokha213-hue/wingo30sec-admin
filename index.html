@@ -375,6 +375,39 @@
             border-radius: 6px;
         }
 
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.10);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: var(--error);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-delete:hover {
+            background: rgba(239, 68, 68, 0.25);
+            box-shadow: 0 0 15px var(--error-glow);
+        }
+
+        .btn-copy {
+            background: rgba(56, 189, 248, 0.10);
+            border: 1px solid rgba(56, 189, 248, 0.30);
+            color: var(--neon-cyan);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.20);
+        }
+
         .btn-group {
             display: flex;
             gap: 10px;
@@ -1060,7 +1093,8 @@
 
                 // Save to key history
                 if (pendingChanges.accessKey) {
-                    await saveKeyToHistory(pendingChanges.accessKey, updateData.expiresAt, updateData.expiryDuration);
+                    const historySaved = await saveKeyToHistory(pendingChanges.accessKey, updateData.expiresAt, updateData.expiryDuration);
+                    if (!historySaved) throw new Error('Access Logs write failed. Check Firebase rules and the settings/accesslogs document.');
                 }
 
                 pendingChanges = {};
@@ -1189,6 +1223,9 @@
                             </div>
                         </div>
                         <div class="key-list-actions">
+                            <button class="btn btn-copy" onclick="copySpecificKey('${keyData.key.replace(/'/g, "\\'")}')" title="Copy this key">
+                                <i class="fa-solid fa-copy"></i> COPY
+                            </button>
                             ${!expired ? `
                                 <button class="btn btn-expire btn-expire-small" onclick="expireSpecificKey('${keyData.key.replace(/'/g, "\\'")}')" title="Expire this key now">
                                     <i class="fa-solid fa-skull"></i> EXPIRE
@@ -1201,6 +1238,9 @@
                                     <i class="fa-solid fa-check"></i> ACTIVATE
                                 </button>
                             ` : ''}
+                            <button class="btn btn-delete" onclick="deleteSpecificKey('${keyData.key.replace(/'/g, "\\'")}')" title="Delete this key from Access Logs">
+                                <i class="fa-solid fa-trash"></i> DELETE
+                            </button>
                         </div>
                     </div>
                 `;
@@ -1256,6 +1296,76 @@
                 loadAllKeys();
             } catch (error) {
                 showMessage('❌ Error: ' + error.message, 'error');
+            }
+        };
+
+        // ============================================
+        // COPY / DELETE KEY
+        // ============================================
+        window.copySpecificKey = async function(key) {
+            try {
+                await navigator.clipboard.writeText(key);
+                showMessage('✅ Key copied to clipboard!', 'success');
+            } catch (error) {
+                // Fallback for older/non-secure browsers
+                const temp = document.createElement('textarea');
+                temp.value = key;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                temp.remove();
+                showMessage('✅ Key copied to clipboard!', 'success');
+            }
+        };
+
+        window.deleteSpecificKey = async function(key) {
+            if (!confirm(`🗑️ Delete key "${key}" from Access Logs? This cannot be undone.`)) return;
+
+            try {
+                const doc = await keyHistoryRef.get();
+                if (!doc.exists || !Array.isArray(doc.data().keys)) {
+                    showMessage('❌ Access Logs not found.', 'error');
+                    return;
+                }
+
+                // Never silently delete the currently active access key.
+                if (currentKeyData && currentKeyData.accessKey === key) {
+                    if (!confirm('⚠️ This is the CURRENT ACTIVE KEY. Delete it from the active Access Control as well?')) {
+                        return;
+                    }
+
+                    await accessControlRef.update({
+                        accessKey: '',
+                        enabled: false,
+                        expiresAt: null,
+                        expiryDuration: null,
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+
+                const keys = doc.data().keys.filter(k => k.key !== key);
+
+                await keyHistoryRef.set({
+                    keys: keys,
+                    updatedAt: new Date().toISOString()
+                }, { merge: true });
+
+                if (currentKeyData && currentKeyData.accessKey === key) {
+                    currentKeyData = {
+                        ...currentKeyData,
+                        accessKey: '',
+                        enabled: false,
+                        expiresAt: null,
+                        expiryDuration: null
+                    };
+                    updateDashboardUI(currentKeyData);
+                }
+
+                showMessage('✅ Key deleted from Access Logs.', 'success');
+                await loadAllKeys();
+            } catch (error) {
+                console.error('Delete key error:', error);
+                showMessage('❌ Delete error: ' + error.message, 'error');
             }
         };
 
