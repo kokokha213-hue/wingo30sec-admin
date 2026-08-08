@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WINGO 30 SEC DEMO — Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,44 +12,31 @@
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #0d1117;
-            --bg-card: rgba(13, 17, 23, 0.9);
             --glass-bg: rgba(15, 23, 42, 0.75);
             --glass-border: rgba(56, 189, 248, 0.15);
             --neon-cyan: #38bdf8;
-            --neon-cyan-glow: rgba(56, 189, 248, 0.5);
             --neon-blue: #3b82f6;
             --accent-gradient: linear-gradient(135deg, #38bdf8, #3b82f6, #6366f1);
             --text-primary: #e2e8f0;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
             --success: #10b981;
-            --success-glow: rgba(16, 185, 129, 0.4);
             --error: #ef4444;
-            --error-glow: rgba(239, 68, 68, 0.4);
             --warning: #f59e0b;
-            --warning-glow: rgba(245, 158, 11, 0.4);
             --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --neon-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
+            padding: 20px;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* Background */
         .grid-bg {
             position: fixed;
             top: 0; left: 0;
@@ -60,216 +47,30 @@
                 linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-        }
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
         }
 
-        .glow-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .glow-orb.orb-1 {
-            width: 350px; height: 350px;
-            background: rgba(56, 189, 248, 0.05);
-            top: -80px; right: -80px;
-        }
-        .glow-orb.orb-2 {
-            width: 300px; height: 300px;
-            background: rgba(59, 130, 246, 0.04);
-            bottom: -80px; left: -80px;
-        }
-
-        /* ============ LOGIN PAGE ============ */
-        #loginPage {
+        .container {
             position: relative;
             z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .login-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 40px 32px;
-            box-shadow: var(--card-shadow), var(--neon-shadow);
-            text-align: center;
-            width: 100%;
-            max-width: 440px;
-            animation: fadeInUp 0.6s ease;
-        }
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--accent-gradient);
-            border-radius: 24px 24px 0 0;
-        }
-
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .admin-logo {
-            width: 70px; height: 70px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            border: 2px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
-        }
-
-        .login-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-        }
-        .login-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 28px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-            text-align: left;
-        }
-        .form-label {
-            display: block;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1.5px solid var(--glass-border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        .form-input:focus {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
-        }
-        .form-input.error {
-            border-color: var(--error);
-            box-shadow: 0 0 15px var(--error-glow);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--accent-gradient);
-            border: none;
-            border-radius: 14px;
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
-            margin-top: 8px;
-        }
-        .login-btn:hover {
-            box-shadow: 0 6px 30px rgba(56, 189, 248, 0.5);
-            transform: translateY(-1px);
-        }
-        .login-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .login-error {
-            margin-top: 14px;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            display: none;
-            text-align: center;
-        }
-        .login-error.show {
-            display: block;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: var(--error);
-        }
-
-        .login-info {
-            margin-top: 24px;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-        .login-info i { color: var(--neon-cyan); }
-
-        /* ============ ADMIN DASHBOARD ============ */
-        #adminDashboard {
-            display: none;
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
-        #adminDashboard.show {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
 
-        .dashboard-header {
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 20px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
             margin-bottom: 24px;
-            padding: 20px 24px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
         }
-        .dashboard-title {
+
+        .title {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.3rem;
             font-weight: 800;
@@ -277,109 +78,40 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 1px;
         }
-        .dashboard-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+
         .admin-badge {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: var(--neon-cyan);
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--success);
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 1px;
-        }
-        .logout-btn {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: var(--error);
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-        .logout-btn:hover {
-            background: rgba(239, 68, 68, 0.25);
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
         }
 
-        /* Stats Cards */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .stat-card-admin {
+        .card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .stat-card-admin:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
-        }
-        .stat-icon-admin {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-        .stat-value-admin {
-            font-size: 2rem;
-            font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .stat-label-admin {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-
-        /* Main Card */
-        .admin-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 18px;
             padding: 28px;
             margin-bottom: 20px;
             box-shadow: var(--card-shadow);
         }
-        .admin-card-header {
+
+        .card-header {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 20px;
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--text-primary);
-        }
-        .admin-card-header i {
-            color: var(--neon-cyan);
-            font-size: 1.3rem;
         }
 
-        /* Current Key Display */
-        .current-key-display {
+        .card-header i { color: var(--neon-cyan); }
+
+        .key-display {
             background: rgba(15, 23, 42, 0.9);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
@@ -391,21 +123,22 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .key-info-label {
+
+        .key-label {
             font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .key-info-value {
+
+        .key-value {
             font-family: 'Roboto Mono', monospace;
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--neon-cyan);
-            letter-spacing: 1px;
         }
-        .key-status-badge {
-            display: inline-block;
+
+        .status-badge {
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.72rem;
@@ -413,31 +146,27 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .key-status-badge.active {
+
+        .status-badge.active {
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: var(--success);
         }
-        .key-status-badge.disabled {
+
+        .status-badge.disabled {
             background: rgba(239, 68, 68, 0.15);
             border: 1px solid rgba(239, 68, 68, 0.3);
             color: var(--error);
         }
 
-        .key-updated-info {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Input Group */
-        .admin-input-group {
+        .input-group {
             display: flex;
             gap: 10px;
             margin-bottom: 16px;
             flex-wrap: wrap;
         }
-        .admin-input {
+
+        .input-field {
             flex: 1;
             min-width: 200px;
             padding: 14px 18px;
@@ -446,17 +175,16 @@
             border-radius: 12px;
             color: var(--text-primary);
             font-size: 1rem;
-            font-family: 'Roboto Mono', 'Inter', sans-serif;
-            letter-spacing: 1px;
+            font-family: 'Roboto Mono', monospace;
             outline: none;
             transition: all 0.3s ease;
         }
-        .admin-input:focus {
+
+        .input-field:focus {
             border-color: var(--neon-cyan);
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
         }
 
-        /* Buttons */
         .btn {
             padding: 14px 24px;
             border: none;
@@ -470,55 +198,51 @@
             text-transform: uppercase;
             white-space: nowrap;
         }
+
         .btn-primary {
             background: var(--accent-gradient);
             color: #fff;
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            width: 100%;
+            margin-top: 8px;
         }
+
         .btn-primary:hover {
             box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
             transform: translateY(-1px);
         }
+
         .btn-primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
+
         .btn-generate {
             background: rgba(99, 102, 241, 0.2);
             border: 1px solid rgba(99, 102, 241, 0.3);
             color: #a78bfa;
         }
-        .btn-generate:hover {
-            background: rgba(99, 102, 241, 0.3);
-        }
-        .btn-toggle {
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 0.82rem;
-        }
+
         .btn-enable {
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: var(--success);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.82rem;
         }
-        .btn-enable:hover {
-            background: rgba(16, 185, 129, 0.25);
-        }
+
         .btn-disable {
             background: rgba(245, 158, 11, 0.15);
             border: 1px solid rgba(245, 158, 11, 0.3);
             color: var(--warning);
-        }
-        .btn-disable:hover {
-            background: rgba(245, 158, 11, 0.25);
-        }
-        .btn-save {
-            margin-top: 8px;
-            width: 100%;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.82rem;
         }
 
-        .admin-message {
+        .message {
             margin-top: 12px;
             padding: 12px 16px;
             border-radius: 10px;
@@ -527,579 +251,177 @@
             display: none;
             text-align: center;
         }
-        .admin-message.show { display: block; }
-        .admin-message.success {
+
+        .message.show { display: block; }
+
+        .message.success {
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: var(--success);
         }
-        .admin-message.error {
+
+        .message.error {
             background: rgba(239, 68, 68, 0.1);
             border: 1px solid rgba(239, 68, 68, 0.3);
             color: var(--error);
         }
-        .admin-message.info {
+
+        .message.info {
             background: rgba(56, 189, 248, 0.1);
             border: 1px solid rgba(56, 189, 248, 0.3);
             color: var(--neon-cyan);
         }
 
-        /* Logs Table */
-        .logs-container {
-            max-height: 400px;
-            overflow-y: auto;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-        }
-        .logs-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .logs-table th {
-            background: rgba(15, 23, 42, 0.95);
-            color: var(--neon-cyan);
-            padding: 12px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            text-align: center;
-        }
-        .logs-table td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.06);
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-        }
-        .log-status {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        .log-status.success {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--success);
-        }
-        .log-status.failed {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--error);
-        }
-        .log-status.blocked {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--warning);
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
+        .btn-group {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            display: none;
-        }
-        .modal-overlay.show {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 32px;
-            max-width: 440px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-        }
-        .modal-icon {
-            font-size: 3rem;
-            color: var(--warning);
-            margin-bottom: 16px;
-        }
-        .modal-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .modal-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-        .modal-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
+            gap: 10px;
             flex-wrap: wrap;
         }
-        .btn-cancel {
-            background: rgba(100, 116, 139, 0.2);
-            border: 1px solid rgba(100, 116, 139, 0.3);
-            color: var(--text-secondary);
-            padding: 12px 24px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .btn-confirm {
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-        }
 
-        /* Responsive */
         @media (max-width: 600px) {
-            .admin-card { padding: 20px 16px; }
-            .dashboard-header { padding: 16px; }
-            .dashboard-title { font-size: 1rem; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); }
-            .admin-input-group { flex-direction: column; }
+            .card { padding: 20px 16px; }
+            .input-group { flex-direction: column; }
             .btn { width: 100%; }
-            .current-key-display { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
     <div class="grid-bg"></div>
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
 
-    <!-- ============ LOGIN PAGE ============ -->
-    <div id="loginPage">
-        <div class="login-card">
-            <div class="admin-logo">
-                <i class="fa-solid fa-user-shield"></i>
-            </div>
-            <h1 class="login-title">ADMIN PANEL</h1>
-            <p class="login-subtitle">WINGO 30 SEC DEMO</p>
-
-            <div class="form-group">
-                <label class="form-label">Admin Email</label>
-                <input type="email" class="form-input" id="adminEmail" placeholder="admin@example.com" autocomplete="email">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-input" id="adminPassword" placeholder="••••••••" autocomplete="current-password">
-            </div>
-
-            <button class="login-btn" id="loginBtn">
-                <i class="fa-solid fa-right-to-bracket"></i> SIGN IN
-            </button>
-
-            <div class="login-error" id="loginError"></div>
-            <p class="login-info">
-                <i class="fa-solid fa-shield-halved"></i> Secure Admin Access • Firebase Auth
-            </p>
-        </div>
-    </div>
-
-    <!-- ============ ADMIN DASHBOARD ============ -->
-    <div id="adminDashboard">
+    <div class="container">
         <!-- Header -->
-        <div class="dashboard-header">
-            <div>
-                <h1 class="dashboard-title">⚙️ ADMIN DASHBOARD</h1>
-            </div>
-            <div class="dashboard-actions">
-                <span class="admin-badge" id="adminBadge">
-                    <i class="fa-solid fa-circle" style="color: #10b981; font-size: 0.5rem;"></i> ADMIN
-                </span>
-                <button class="logout-btn" id="logoutBtn">
-                    <i class="fa-solid fa-right-from-bracket"></i> LOGOUT
-                </button>
-            </div>
+        <div class="header">
+            <h1 class="title">⚙️ ADMIN DASHBOARD</h1>
+            <span class="admin-badge">🔒 ADMIN PANEL</span>
         </div>
 
-        <!-- Stats -->
-        <div class="stats-row">
-            <div class="stat-card-admin">
-                <div class="stat-icon-admin">🔑</div>
-                <div class="stat-value-admin" id="totalVerifications">0</div>
-                <div class="stat-label-admin">Total Verifications</div>
-            </div>
-            <div class="stat-card-admin">
-                <div class="stat-icon-admin">✅</div>
-                <div class="stat-value-admin" id="successfulLogins">0</div>
-                <div class="stat-label-admin">Successful</div>
-            </div>
-            <div class="stat-card-admin">
-                <div class="stat-icon-admin">❌</div>
-                <div class="stat-value-admin" id="failedAttempts">0</div>
-                <div class="stat-label-admin">Failed Attempts</div>
-            </div>
-            <div class="stat-card-admin">
-                <div class="stat-icon-admin">⏱️</div>
-                <div class="stat-value-admin" id="lastUpdated">--</div>
-                <div class="stat-label-admin">Last Key Update</div>
-            </div>
-        </div>
-
-        <!-- Access Key Management -->
-        <div class="admin-card">
-            <div class="admin-card-header">
+        <!-- Access Key Card -->
+        <div class="card">
+            <div class="card-header">
                 <i class="fa-solid fa-key"></i> ACCESS KEY MANAGEMENT
             </div>
 
-            <!-- Current Key Display -->
-            <div class="current-key-display">
+            <div class="key-display">
                 <div>
-                    <div class="key-info-label">Current Access Key</div>
-                    <div class="key-info-value" id="currentKeyDisplay">••••••••</div>
-                    <div class="key-updated-info" id="keyUpdateInfo"></div>
+                    <div class="key-label">Current Access Key</div>
+                    <div class="key-value" id="currentKeyDisplay">Loading...</div>
                 </div>
                 <div>
-                    <span class="key-status-badge active" id="keyStatusBadge">ACTIVE</span>
+                    <span class="status-badge active" id="keyStatusBadge">ACTIVE</span>
                 </div>
             </div>
 
-            <!-- Change Key -->
-            <div class="admin-card-header" style="font-size: 0.95rem; margin-top: 20px;">
+            <div class="card-header" style="font-size: 0.95rem;">
                 <i class="fa-solid fa-pen-to-square"></i> CHANGE ACCESS KEY
             </div>
-            <div class="admin-input-group">
-                <input type="text" class="admin-input" id="newAccessKey" placeholder="Enter new access key" maxlength="50">
+
+            <div class="input-group">
+                <input type="text" class="input-field" id="newAccessKey" placeholder="Enter new access key">
                 <button class="btn btn-generate" id="generateKeyBtn">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> GENERATE
                 </button>
             </div>
 
-            <!-- Toggle Enable/Disable -->
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;">
-                <button class="btn btn-toggle btn-enable" id="enableKeyBtn">
-                    <i class="fa-solid fa-toggle-on"></i> ENABLE KEY
+            <div class="btn-group" style="margin-bottom: 12px;">
+                <button class="btn btn-enable" id="enableKeyBtn">
+                    <i class="fa-solid fa-toggle-on"></i> ENABLE
                 </button>
-                <button class="btn btn-toggle btn-disable" id="disableKeyBtn">
-                    <i class="fa-solid fa-toggle-off"></i> DISABLE KEY
+                <button class="btn btn-disable" id="disableKeyBtn">
+                    <i class="fa-solid fa-toggle-off"></i> DISABLE
                 </button>
             </div>
 
-            <!-- Save Button -->
-            <button class="btn btn-primary btn-save" id="saveChangesBtn">
+            <button class="btn btn-primary" id="saveChangesBtn">
                 <i class="fa-solid fa-floppy-disk"></i> SAVE CHANGES
             </button>
 
-            <div class="admin-message" id="adminMessage"></div>
-        </div>
-
-        <!-- Access Logs -->
-        <div class="admin-card">
-            <div class="admin-card-header">
-                <i class="fa-solid fa-clock-rotate-left"></i> RECENT ACCESS LOGS
-                <button class="btn btn-generate" id="refreshLogsBtn" style="margin-left: auto; padding: 8px 14px; font-size: 0.75rem;">
-                    <i class="fa-solid fa-rotate"></i> REFRESH
-                </button>
-            </div>
-            <div class="logs-container">
-                <table class="logs-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Status</th>
-                            <th>Reason</th>
-                        </tr>
-                    </thead>
-                    <tbody id="logsTableBody">
-                        <tr><td colspan="3" style="padding: 30px; color: var(--text-muted);">Loading logs...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div class="modal-overlay" id="confirmModal">
-        <div class="modal-box">
-            <div class="modal-icon">⚠️</div>
-            <h2 class="modal-title">Confirm Key Change</h2>
-            <p class="modal-text">Are you sure you want to replace the current Access Key? All existing users will need the new key to access.</p>
-            <div class="modal-actions">
-                <button class="btn-cancel" id="modalCancel">CANCEL</button>
-                <button class="btn-confirm" id="modalConfirm">YES, CHANGE KEY</button>
-            </div>
+            <div class="message" id="message"></div>
         </div>
     </div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // ============================================
-        // FIREBASE CONFIGURATION
-        // ============================================
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyCXGBzzWa3J0xpXl13BO42jsrKd-UA-yqs",
             authDomain: "wingohack-20abf.firebaseapp.com",
             projectId: "wingohack-20abf",
             storageBucket: "wingohack-20abf.firebasestorage.app",
             messagingSenderId: "900242640346",
-            appId: "1:900242640346:web:fba860a8ea16df945f84e3",
-            measurementId: "G-Z6FZC0KGZ1"
+            appId: "1:900242640346:web:fba860a8ea16df945f84e3"
         };
 
         firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
         const db = firebase.firestore();
+        const accessControlRef = db.collection('settings').doc('accessControl');
 
-        console.log('✅ Firebase Admin connected');
+        console.log('✅ Firebase connected');
 
-        // ============================================
-        // DOM ELEMENTS
-        // ============================================
-        const loginPage = document.getElementById('loginPage');
-        const adminDashboard = document.getElementById('adminDashboard');
-        const adminEmail = document.getElementById('adminEmail');
-        const adminPassword = document.getElementById('adminPassword');
-        const loginBtn = document.getElementById('loginBtn');
-        const loginError = document.getElementById('loginError');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const adminBadge = document.getElementById('adminBadge');
-
-        // Dashboard elements
-        const totalVerifications = document.getElementById('totalVerifications');
-        const successfulLogins = document.getElementById('successfulLogins');
-        const failedAttempts = document.getElementById('failedAttempts');
-        const lastUpdated = document.getElementById('lastUpdated');
+        // DOM Elements
         const currentKeyDisplay = document.getElementById('currentKeyDisplay');
-        const keyUpdateInfo = document.getElementById('keyUpdateInfo');
         const keyStatusBadge = document.getElementById('keyStatusBadge');
         const newAccessKey = document.getElementById('newAccessKey');
         const generateKeyBtn = document.getElementById('generateKeyBtn');
         const enableKeyBtn = document.getElementById('enableKeyBtn');
         const disableKeyBtn = document.getElementById('disableKeyBtn');
         const saveChangesBtn = document.getElementById('saveChangesBtn');
-        const adminMessage = document.getElementById('adminMessage');
-        const logsTableBody = document.getElementById('logsTableBody');
-        const refreshLogsBtn = document.getElementById('refreshLogsBtn');
+        const message = document.getElementById('message');
 
-        // Modal
-        const confirmModal = document.getElementById('confirmModal');
-        const modalCancel = document.getElementById('modalCancel');
-        const modalConfirm = document.getElementById('modalConfirm');
-
-        // References
-        const accessControlRef = db.collection('settings').doc('accessControl');
-        const accessLogsRef = db.collection('accessLogs');
-        const adminsRef = db.collection('admins');
-
-        // State
-        let currentKeyData = null;
         let pendingChanges = {};
-        let currentAdminEmail = '';
 
-        // ============================================
-        // SHOW/HIDE MESSAGE
-        // ============================================
-        function showAdminMessage(text, type) {
-            adminMessage.textContent = text;
-            adminMessage.className = 'admin-message show ' + type;
-            setTimeout(() => {
-                adminMessage.className = 'admin-message';
-            }, 4000);
+        // Show message
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = 'message show ' + type;
+            setTimeout(() => { message.className = 'message'; }, 4000);
         }
 
-        function showLoginError(text) {
-            loginError.textContent = text;
-            loginError.classList.add('show');
-            setTimeout(() => {
-                loginError.classList.remove('show');
-            }, 4000);
-        }
-
-        // ============================================
-        // CHECK ADMIN STATUS
-        // ============================================
-        async function verifyAdmin(uid) {
-            try {
-                const adminDoc = await adminsRef.doc(uid).get();
-                return adminDoc.exists && adminDoc.data().role === 'admin';
-            } catch (error) {
-                console.error('Admin verification error:', error);
-                return false;
-            }
-        }
-
-        // ============================================
-        // LOGIN
-        // ============================================
-        loginBtn.addEventListener('click', async () => {
-            const email = adminEmail.value.trim();
-            const password = adminPassword.value;
-
-            if (!email || !password) {
-                showLoginError('Please enter email and password');
-                return;
-            }
-
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SIGNING IN...';
-
-            try {
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const uid = userCredential.user.uid;
-
-                // Verify admin
-                const isAdmin = await verifyAdmin(uid);
-
-                if (!isAdmin) {
-                    await auth.signOut();
-                    showLoginError('Access denied. You are not an administrator.');
-                    loginBtn.disabled = false;
-                    loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> SIGN IN';
-                    return;
-                }
-
-                // Success
-                currentAdminEmail = email;
-                showDashboard();
-
-            } catch (error) {
-                let errorMsg = 'Login failed. Please try again.';
-                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                    errorMsg = 'Invalid email or password';
-                } else if (error.code === 'auth/too-many-requests') {
-                    errorMsg = 'Too many attempts. Please try later.';
-                }
-                showLoginError(errorMsg);
-                loginBtn.disabled = false;
-                loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> SIGN IN';
-            }
-        });
-
-        // Enter key login
-        adminPassword.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') loginBtn.click();
-        });
-
-        // ============================================
-        // LOGOUT
-        // ============================================
-        logoutBtn.addEventListener('click', async () => {
-            await auth.signOut();
-            currentKeyData = null;
-            pendingChanges = {};
-            hideDashboard();
-        });
-
-        // ============================================
-        // SHOW/HIDE DASHBOARD
-        // ============================================
-        function showDashboard() {
-            loginPage.style.display = 'none';
-            adminDashboard.classList.add('show');
-            adminBadge.innerHTML = `<i class="fa-solid fa-circle" style="color: #10b981; font-size: 0.5rem;"></i> ${currentAdminEmail}`;
-            loadDashboardData();
-            loadAccessLogs();
-        }
-
-        function hideDashboard() {
-            adminDashboard.classList.remove('show');
-            loginPage.style.display = 'flex';
-            adminEmail.value = '';
-            adminPassword.value = '';
-            loginBtn.disabled = false;
-            loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> SIGN IN';
-        }
-
-        // ============================================
-        // CHECK AUTH STATE
-        // ============================================
-        auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                const isAdmin = await verifyAdmin(user.uid);
-                if (isAdmin) {
-                    currentAdminEmail = user.email;
-                    showDashboard();
-                } else {
-                    await auth.signOut();
-                }
-            }
-        });
-
-        // ============================================
-        // LOAD DASHBOARD DATA
-        // ============================================
-        async function loadDashboardData() {
+        // Load current data
+        async function loadData() {
             try {
                 const doc = await accessControlRef.get();
                 if (doc.exists) {
-                    currentKeyData = doc.data();
-                    updateDashboardUI(currentKeyData);
+                    const data = doc.data();
+                    currentKeyDisplay.textContent = data.accessKey || 'NOT SET';
+                    
+                    if (data.enabled !== false) {
+                        keyStatusBadge.textContent = 'ACTIVE';
+                        keyStatusBadge.className = 'status-badge active';
+                    } else {
+                        keyStatusBadge.textContent = 'DISABLED';
+                        keyStatusBadge.className = 'status-badge disabled';
+                    }
                 } else {
-                    showAdminMessage('Access control document not found in Firestore!', 'error');
                     currentKeyDisplay.textContent = 'NOT CONFIGURED';
+                    showMessage('Firestore document not found! Create settings/accessControl first.', 'error');
                 }
             } catch (error) {
-                showAdminMessage('Error loading data: ' + error.message, 'error');
+                console.error('Load error:', error);
+                currentKeyDisplay.textContent = 'ERROR LOADING';
+                showMessage('Error: ' + error.message, 'error');
             }
         }
 
-        function updateDashboardUI(data) {
-            // Current key
-            currentKeyDisplay.textContent = data.accessKey || 'NOT SET';
-            
-            // Status badge
-            if (data.enabled !== false) {
-                keyStatusBadge.textContent = 'ACTIVE';
-                keyStatusBadge.className = 'key-status-badge active';
-            } else {
-                keyStatusBadge.textContent = 'DISABLED';
-                keyStatusBadge.className = 'key-status-badge disabled';
-            }
-
-            // Update info
-            if (data.updatedAt) {
-                const date = new Date(data.updatedAt);
-                lastUpdated.textContent = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                keyUpdateInfo.textContent = 'Last updated: ' + date.toLocaleString('en-US', {
-                    month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-                });
-            } else {
-                lastUpdated.textContent = '--';
-                keyUpdateInfo.textContent = '';
-            }
-        }
-
-        // ============================================
-        // REAL-TIME LISTENER
-        // ============================================
+        // Real-time listener
         accessControlRef.onSnapshot((doc) => {
             if (doc.exists) {
-                currentKeyData = doc.data();
-                updateDashboardUI(currentKeyData);
-                // Don't reset pending changes if user is editing
-                if (!pendingChanges.accessKey) {
-                    newAccessKey.value = '';
+                const data = doc.data();
+                currentKeyDisplay.textContent = data.accessKey || 'NOT SET';
+                if (data.enabled !== false) {
+                    keyStatusBadge.textContent = 'ACTIVE';
+                    keyStatusBadge.className = 'status-badge active';
+                } else {
+                    keyStatusBadge.textContent = 'DISABLED';
+                    keyStatusBadge.className = 'status-badge disabled';
                 }
             }
         });
 
-        // ============================================
-        // GENERATE KEY
-        // ============================================
+        // Generate key
         generateKeyBtn.addEventListener('click', () => {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let key = 'WINGO-';
@@ -1107,184 +429,98 @@
                 key += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             newAccessKey.value = key;
-            pendingChanges.accessKey = key;
-            showAdminMessage('New key generated! Click Save Changes to apply.', 'info');
+            showMessage('New key generated! Click Save Changes to apply.', 'info');
         });
 
-        // ============================================
-        // ENABLE/DISABLE KEY
-        // ============================================
+        // Enable
         enableKeyBtn.addEventListener('click', () => {
             pendingChanges.enabled = true;
             keyStatusBadge.textContent = 'ACTIVE';
-            keyStatusBadge.className = 'key-status-badge active';
-            showAdminMessage('Key will be ENABLED after saving.', 'info');
+            keyStatusBadge.className = 'status-badge active';
+            showMessage('Key will be ENABLED after saving.', 'info');
         });
 
+        // Disable
         disableKeyBtn.addEventListener('click', () => {
             pendingChanges.enabled = false;
             keyStatusBadge.textContent = 'DISABLED';
-            keyStatusBadge.className = 'key-status-badge disabled';
-            showAdminMessage('Key will be DISABLED after saving. Users cannot verify!', 'info');
+            keyStatusBadge.className = 'status-badge disabled';
+            showMessage('Key will be DISABLED after saving.', 'info');
         });
 
-        // ============================================
-        // SAVE CHANGES (With Confirmation Modal)
-        // ============================================
-        saveChangesBtn.addEventListener('click', () => {
-            const newKey = newAccessKey.value.trim();
-            
-            if (newKey) {
-                pendingChanges.accessKey = newKey;
+        // Track input
+        newAccessKey.addEventListener('input', () => {
+            if (newAccessKey.value.trim()) {
+                pendingChanges.accessKey = newAccessKey.value.trim();
             }
+        });
+
+        // Save
+        saveChangesBtn.addEventListener('click', async () => {
+            const newKey = newAccessKey.value.trim();
+            if (newKey) pendingChanges.accessKey = newKey;
 
             if (!pendingChanges.accessKey && pendingChanges.enabled === undefined) {
-                showAdminMessage('No changes to save.', 'info');
+                showMessage('No changes to save.', 'info');
                 return;
             }
 
-            // Show confirmation if changing key
-            if (pendingChanges.accessKey && pendingChanges.accessKey !== currentKeyData?.accessKey) {
-                confirmModal.classList.add('show');
-            } else {
-                // Only changing enabled status, no confirmation needed
-                executeSave();
+            if (pendingChanges.accessKey) {
+                const confirmChange = confirm('Are you sure you want to change the Access Key? All users will need the new key.');
+                if (!confirmChange) return;
             }
-        });
 
-        modalCancel.addEventListener('click', () => {
-            confirmModal.classList.remove('show');
-        });
-
-        modalConfirm.addEventListener('click', async () => {
-            confirmModal.classList.remove('show');
-            await executeSave();
-        });
-
-        // Close modal on overlay click
-        confirmModal.addEventListener('click', (e) => {
-            if (e.target === confirmModal) {
-                confirmModal.classList.remove('show');
-            }
-        });
-
-        // ============================================
-        // EXECUTE SAVE
-        // ============================================
-        async function executeSave() {
             saveChangesBtn.disabled = true;
             saveChangesBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SAVING...';
 
             try {
-                const updateData = {};
-                
+                const updateData = {
+                    updatedAt: new Date().toISOString()
+                };
+
                 if (pendingChanges.accessKey) {
                     updateData.accessKey = pendingChanges.accessKey;
                 }
                 if (pendingChanges.enabled !== undefined) {
                     updateData.enabled = pendingChanges.enabled;
                 }
-                
-                updateData.updatedAt = new Date().toISOString();
-                updateData.updatedBy = auth.currentUser?.uid || 'admin';
 
-                // Update Firestore
                 await accessControlRef.update(updateData);
 
-                // Clear pending changes
                 pendingChanges = {};
                 newAccessKey.value = '';
-
-                showAdminMessage('✅ Changes saved successfully! Real-time update active.', 'success');
+                showMessage('✅ Changes saved successfully!', 'success');
 
             } catch (error) {
                 console.error('Save error:', error);
-                showAdminMessage('❌ Error saving: ' + error.message, 'error');
+                
+                // If document doesn't exist, create it
+                if (error.code === 'not-found') {
+                    try {
+                        const createData = {
+                            accessKey: pendingChanges.accessKey || 'WINGO-DEMO-2024',
+                            enabled: pendingChanges.enabled !== undefined ? pendingChanges.enabled : true,
+                            updatedAt: new Date().toISOString()
+                        };
+                        await accessControlRef.set(createData);
+                        pendingChanges = {};
+                        newAccessKey.value = '';
+                        showMessage('✅ Document created and saved!', 'success');
+                    } catch (createError) {
+                        showMessage('❌ Error: ' + createError.message, 'error');
+                    }
+                } else {
+                    showMessage('❌ Error: ' + error.message, 'error');
+                }
             } finally {
                 saveChangesBtn.disabled = false;
                 saveChangesBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> SAVE CHANGES';
             }
-        }
-
-        // Track new key input
-        newAccessKey.addEventListener('input', () => {
-            pendingChanges.accessKey = newAccessKey.value.trim();
         });
 
-        // ============================================
-        // LOAD ACCESS LOGS
-        // ============================================
-        async function loadAccessLogs() {
-            try {
-                const snapshot = await accessLogsRef
-                    .orderBy('timestamp', 'desc')
-                    .limit(50)
-                    .get();
-
-                let successCount = 0;
-                let failCount = 0;
-                let totalCount = snapshot.size;
-
-                if (snapshot.empty) {
-                    logsTableBody.innerHTML = '<tr><td colspan="3" style="padding: 30px; color: var(--text-muted);">No logs available</td></tr>';
-                    totalVerifications.textContent = '0';
-                    successfulLogins.textContent = '0';
-                    failedAttempts.textContent = '0';
-                    return;
-                }
-
-                let html = '';
-                snapshot.forEach((doc) => {
-                    const log = doc.data();
-                    const status = log.status || 'UNKNOWN';
-                    
-                    if (status === 'SUCCESS') successCount++;
-                    else if (status === 'FAILED' || status === 'BLOCKED' || status === 'ERROR') failCount++;
-
-                    let statusClass = 'failed';
-                    if (status === 'SUCCESS') statusClass = 'success';
-                    else if (status === 'BLOCKED') statusClass = 'blocked';
-
-                    let timeStr = '--';
-                    if (log.timestamp) {
-                        const date = log.timestamp.toDate();
-                        timeStr = date.toLocaleString('en-US', {
-                            month: 'short', day: 'numeric',
-                            hour: '2-digit', minute: '2-digit', second: '2-digit'
-                        });
-                    }
-
-                    html += `
-                        <tr>
-                            <td>${timeStr}</td>
-                            <td><span class="log-status ${statusClass}">${status}</span></td>
-                            <td>${log.reason || '--'}</td>
-                        </tr>
-                    `;
-                });
-
-                logsTableBody.innerHTML = html;
-                totalVerifications.textContent = totalCount;
-                successfulLogins.textContent = successCount;
-                failedAttempts.textContent = failCount;
-
-            } catch (error) {
-                console.error('Logs load error:', error);
-                logsTableBody.innerHTML = '<tr><td colspan="3" style="padding: 30px; color: var(--error);">Error loading logs</td></tr>';
-            }
-        }
-
-        refreshLogsBtn.addEventListener('click', loadAccessLogs);
-
-        // ============================================
-        // INIT
-        // ============================================
-        console.log('🚀 Admin Dashboard Ready');
-        console.log('📋 Make sure you have:');
-        console.log('  1. Email/Password auth enabled in Firebase');
-        console.log('  2. Admin user created in Authentication');
-        console.log('  3. admins/{uid} document with role:"admin"');
-        console.log('  4. settings/accessControl document with accessKey field');
+        // Load data on start
+        loadData();
+        console.log('🚀 Admin Panel Ready');
     </script>
 </body>
 </html>
